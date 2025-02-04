@@ -1,8 +1,15 @@
 #include <iostream>
 #include "object.hpp"
 
-object::object(){
+#pragma once
+
+object::object(int id, int x, int y){
 	
+	this->x = x;
+
+	this->y = y;
+
+	this->id = id;
 
 }
 
@@ -25,10 +32,13 @@ const int object::getY(){
 void object::setX(int x){
 
 	this->x = x;
+	std::cout << this->getX() << std::endl;
 }
 
 
 void object::setY(int y){
 
 	this->y = y;
+	std::cout << this->getY() << std::endl;
 }
+

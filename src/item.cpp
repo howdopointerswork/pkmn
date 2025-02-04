@@ -4,11 +4,7 @@
 
 
 
-item::item(std::string name, int id){
-
-		this->name = name;
-
-		this->id = id;
+item::item(int id, int x, int y) : object(id, x, y){
 
 		this->qty = 1;
 
@@ -52,7 +48,7 @@ const int item::getID(){
 
 
 
-general::general(std::string name, int id) : item(name, id){
+general::general(int id, int x, int y) : item(id, x, y){
 
 
 }
@@ -68,7 +64,7 @@ void general::effect(int id){
 
 
 
-medicine::medicine(int type, int amount, std::string name, int id) : item(name, id){
+medicine::medicine(int type, int amount, int id, int x, int y) : item(id, x, y){
 
 	this->type = type;
 	this->amount = amount;
@@ -85,7 +81,7 @@ void medicine::effect(int id){
 //medicine constructor should call super constructor
 
 
-pokeball::pokeball(int catchrate, std::string name, int id) : item(name, id){
+pokeball::pokeball(int catchrate, int id, int x, int y) : item(id, x, y){
 
 
 	this->catchrate = catchrate;;
@@ -102,7 +98,7 @@ void pokeball::effect(int id){
 
 
 
-berry::berry(int type, int amount, std::string name, int id) : item(name, id){
+berry::berry(int type, int amount, int id, int x, int y) : item(id, x, y){
 
 	this->type = type;
 
@@ -123,7 +119,7 @@ void berry::effect(int id){
 
 
 
-battle::battle(int num, std::string name, int id) : item(name, id){
+battle::battle(int num, int id, int x, int y) : item(id, x, y){
 
 
 	this->num = num;
@@ -137,7 +133,7 @@ void battle::effect(int id){
 }
 
 
-tmhm::tmhm(move* mv, std::string name, int id) : item(name, id){
+tmhm::tmhm(move* mv, int id, int x, int y) : item(id, x, y){
 
 	this->mv = mv;
 
@@ -150,7 +146,7 @@ void tmhm::effect(int id){
 }
 
 
-key::key(std::string name, int id) : item(name, id){
+key::key(int id, int x, int y) : item(id, x, y){
 
 
 

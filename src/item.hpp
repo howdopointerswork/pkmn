@@ -11,7 +11,7 @@ class item : public object{
 
 public:
 
-	item(std::string name, int id);
+	item(int id, int x, int y);
 
 	//virtual ~item() = default;
 
@@ -53,7 +53,7 @@ class general : public item{
 
 public:
 
-	general(std::string name, int id);
+	general(int id, int x, int y);
 
 	void effect(int id) override;
 
@@ -68,7 +68,7 @@ class medicine : public item{
 
 public:
 
-	medicine(int type, int amount, std::string name, int id);
+	medicine(int type, int amount, int id, int x, int y);
 
 	void effect(int id) override;
 
@@ -96,7 +96,7 @@ class pokeball : public item{
 
 public:
 
-	pokeball(int catchrate, std::string name, int id);
+	pokeball(int catchrate, int id, int x, int y);
 
 	void effect(int id) override;
 
@@ -114,7 +114,7 @@ class berry : public item{
 
 public:
 
-	berry(int type, int amount, std::string name, int id);	
+	berry(int type, int amount, int id, int x, int y);	
 
 	void effect(int id) override;
 
@@ -134,7 +134,7 @@ class battle : public item{
 
 public:
 
-	battle(int num, std::string mad, int id); //which stat
+	battle(int num, int id, int x, int y); //which stat
 
 	void effect(int id) override;
 
@@ -149,7 +149,7 @@ class tmhm : public item{
 
 public: 
 
-	tmhm(move* mv, std::string name, int id);
+	tmhm(move* mv, int id, int x, int y);
 
 	void effect(int id) override;
 
@@ -164,7 +164,7 @@ class key : public item{
 
 public:
 
-	key(std::string name, int id);
+	key(int id, int x, int y);
 
 	void effect(int id) override;
 

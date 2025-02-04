@@ -1,6 +1,7 @@
 #include <iostream>
 #include "type.cpp"
 
+
 #pragma once
 
 typedef std::string str;

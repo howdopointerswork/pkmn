@@ -7,14 +7,17 @@
 
 
 int main(){
-
-	//item here	
 	
-	trainer* user = new trainer("User", 1);
 
-	item* generalItem = new general("Item1", 1);
 
-	tile* tl = new tile(4);
+	//will condense assertions into functions
+	trainer* user1 = new trainer("User", 1, 0, 0);
+
+	item* generalItem = new general(1, 0, 0);
+
+	npc* comp1 = new npc("Breeder", 1, 0, 0);
+
+	tile* tl = new tile(4, 0, 0);
 
 	
 	assert(tl->getCurrent() == nullptr);
@@ -47,7 +50,7 @@ int main(){
 
 
 
-	tl->addCurrent(user);
+	tl->addCurrent(user1);
 
 	assert(typeid(*tl->getCurrent()) == typeid(trainer));
 
@@ -69,15 +72,34 @@ int main(){
 
 
 	//for npc here
+	tl->addCurrent(comp1);
 
+
+	assert(typeid(*tl->getCurrent()) == typeid(npc));
+
+	assert(tl->getCurrent() != nullptr);
+
+	assert(tl->checkPassable() == false);
+
+	assert(tl->isPassable() == false);	
 
 	
 
+	tl->removeCurrent();
+
+	assert(tl->getCurrent() == nullptr);
+
+	assert(tl->checkPassable() == true);
+
+	assert(tl->isPassable() == true);
+
 	std::cout << "All Tests Passed." << std::endl;
 
-	delete user;
+	delete user1;
 
 	delete generalItem;
+
+	delete comp1;
 
 	delete tl;
 

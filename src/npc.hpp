@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "object.cpp"
 
 #pragma once
 
@@ -12,7 +12,7 @@ public:
 
 	//constructor
 
-	npc(str name);
+	npc(str name, int id, int x, int y);
 
 	//read from txt files or db later
 	void setDialogue();
@@ -26,6 +26,8 @@ private:
 	str dialogue;
 
 	bool talking;
+
+	int id;
 
 	
 

@@ -1,7 +1,10 @@
 #include <iostream>
 #include <vector>
-#include "pkmn.hpp"
+#include "pkmn.cpp"
 #include "item.cpp"
+#include "object.cpp"
+
+
 
 
 #pragma once
@@ -16,7 +19,7 @@ class trainer : public object{
 
 public:
 
-	trainer(str name, int id); //constructor
+	trainer(str name, int id, int x, int y); //constructor
 
 	const str getName(); //get name of trainer
 
@@ -50,18 +53,30 @@ public:
 
 	void removeItem(int id);
 
-	int getDir();
+	const int getDir();
 
-	int checkDir(int choice);
+	void checkDir(int choice);
+
+	void matchDir(int x, int y);
 
 	void setDir(int dir);
+
+	void move(int mv); //check for canMove bool
+
+	bool canInteract();
+
+	//void interact(tile* t, int dir);
+
+	//reset position
+	//set both x and y
+
 
 
 private:
 
 	str name; //trainer name
 
-	int id; //trainer id
+//	int id; //trainer id
 
 	int dir; //direction user is facing based on last movement
 

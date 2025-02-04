@@ -1,20 +1,24 @@
 #include <stdio.h>
 #include <iostream>
-#include "trainer.cpp"
+#include "object.cpp"
 #include "npc.cpp"
+#include "trainer.cpp"
+
+
+#pragma once
 
 
 class tile : public object{
 
 public: 
 
-	tile(int id); //set id, if passable, and current item, null if none
+	tile(int id, int x, int y); //use object constructor here
 
-	int getID();
+	//int getID();
 
 	bool checkPassable(); //returns passable boolean
  
-	bool isPassable(); //returns true if current is nullptr
+	void isPassable(); //returns true if current is nullptr
 
 	void checkInteract(bool interact); //check player interact bool, handle, return interact bool
 
@@ -26,11 +30,15 @@ public:
 
 	object* getCurrent();
 
+	void setCurrent(object* new_current);
+
+	
+
 
 
 private: 
 
-	int id; //to identify tile type
+	//int id; //to identify tile type
 
 	size_t size; //for allocating data
 

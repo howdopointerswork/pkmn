@@ -1,5 +1,6 @@
 #include <iostream>
 
+#pragma once
 
 class object{
 	
@@ -7,7 +8,9 @@ public:
 
 	virtual ~object() = default;
 
-	object();
+//	object();
+
+	object(int id, int x, int y);
 
 	const int getX();
 
@@ -17,10 +20,15 @@ public:
 
 	void setY(int y);
 
+
+
+
 private:
 
 	int x;
 
-	int y;	
+	int y;
+	
+	int id;
 
 };
