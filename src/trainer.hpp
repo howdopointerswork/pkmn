@@ -65,7 +65,7 @@ public:
 
 	bool canInteract();
 
-	//void interact(tile* t, int dir);
+
 
 	//reset position
 	//set both x and y

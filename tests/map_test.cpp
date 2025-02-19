@@ -13,7 +13,9 @@ int main(){
 
 	trainer* p1 = new trainer("User", 192018324, 0, 0);
 
-	item* generalItem = new general(4, 2, 3);
+	item* generalItem = new general(4, 3, 2);
+	//int type, int amount, int id, int x, int y
+	item* medItem = new medicine(3, 20, 6, 4, 0);
 
 	npc* comp1 = new npc("Breeder", 1, 1, 1);
 
@@ -23,7 +25,7 @@ int main(){
 
 	int count = 0;
 
-	int size = 5;
+	int size = 7;
 
 	int sq = pow(size,2);
 
@@ -41,6 +43,14 @@ int main(){
 	area1->getTile(6)->addCurrent(generalItem); //at 1,1
 	std::cout << "Test X: " << area1->getTile(6)->getX() << std::endl;
 	std::cout << "Test Y: " << area1->getTile(6)->getY() << std::endl;
+	area1->getTile(4)->addCurrent(medItem);
+	std::cout << "Test X: " << area1->getTile(4)->getX() << std::endl;
+	std::cout << "Test Y: " << area1->getTile(4)->getY() << std::endl;	
+	//3,4: 0-4, 5-9, 10-14, 15-19, 20-24
+
+	//area1->getTile
+	area1->getTile(13)->addCurrent(comp1);
+	std::cout << "NPC on: " << area1->getTile(13)->getX() << "," << area1->getTile(13)->getY() << std::endl; 
 	//area1->getTile(size)->addCurrent(comp1);
 
 	area1->getTile(0)->addCurrent(p1);
@@ -62,10 +72,18 @@ int main(){
 	assert(mgr->getCurrent() != nullptr);
 
 	assert(typeid(*area1->getTile(0)->getCurrent()) == typeid(trainer));
+
+	assert(typeid(*area1->getTile(4)->getCurrent()) == typeid(medicine));
 	//should be item
 	assert(typeid(*area1->getTile(6)->getCurrent()) == typeid(general));
+
+	assert(typeid(*area1->getTile(13)->getCurrent()) == typeid(npc));
 	
 	mgr->movePlayer();
+
+	assert(scn->getPlayer()->getPocketSize(0) == 1);
+
+	assert(scn->getPlayer()->getPocketSize(1) == 1);
 
 	//assert(typeid(*area1->getTile(size)->getCurrent()) == typeid(npc));
 

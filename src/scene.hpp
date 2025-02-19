@@ -33,6 +33,10 @@ public:
 
 	void setGrid(map* m);
 
+	void printBag();
+
+	void printNPCs();
+
 
 //88, 136, 160
 //22, 34, 40

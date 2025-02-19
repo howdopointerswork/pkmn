@@ -42,3 +42,8 @@ void object::setY(int y){
 	std::cout << this->getY() << std::endl;
 }
 
+
+int object::getID(){
+
+	return this->id;
+}

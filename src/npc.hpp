@@ -15,7 +15,12 @@ public:
 	npc(str name, int id, int x, int y);
 
 	//read from txt files or db later
-	void setDialogue();
+	void setDialogue(str txt);
+
+	void speak();
+
+	str getDialogue();
+
 
 
 

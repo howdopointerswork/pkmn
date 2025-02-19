@@ -97,6 +97,7 @@ void trainer::addItem(item* toAdd){
 
 		this->bag[0].push_back(toAdd);
 		//put with if statement to check
+	
 
 	}
 	else if(typeid(*toAdd) == typeid(medicine) && !this->checkItemExists(toAdd, 1)){
@@ -330,31 +331,7 @@ void trainer::move(int mv){
 }
 
 
-/*void trainer::interact(tile* t, int dir){
 
-	if(this->interact){
-
-		switch(dir){
-
-			case 1:
-				std::cout << "UP" << std::endl;
-				break;
-			case 2:
-				std::cout << "LEFT" << std::endl;
-				break;	
-			case 3:
-				std::cout << "RIGHT" << std::endl;
-				break;	
-			case 4:
-				std::cout << "DOWN" << std::endl;
-				break;
-		}
-	}
-	else{
-
-		std::cout << "Cannot interact" << std::endl;
-	}
-}*/
 
 
 /*void trainer::removeItem(int id){

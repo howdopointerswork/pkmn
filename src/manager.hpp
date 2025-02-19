@@ -33,6 +33,8 @@ public:
 
 	void resetChoice();
 
+	void interact(trainer* user, tile* pos);
+
 
 
 	//swap scene

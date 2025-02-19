@@ -20,6 +20,9 @@ public:
 
 	void setY(int y);
 
+	int getID();
+
+	//virtual void printInfo();
 
 
 

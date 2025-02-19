@@ -8,6 +8,12 @@
 
 #pragma once
 
+//id guide:
+//1 regular tile
+//2 immovable tile (object)
+//3 wild grass
+//4 border
+
 
 
 tile::tile(int id, int x, int y) : object(id, x, y){ 
