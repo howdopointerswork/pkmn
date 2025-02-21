@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include "map.cpp"
 
 
@@ -37,6 +38,18 @@ public:
 
 	void printNPCs();
 
+	void vec_add(std::array<int,2> arr);
+
+	void vec_clear();
+
+	int getRate(int index);
+
+	int getID(int index);
+
+	int vec_size();
+
+	std::vector<std::array<int, 2>> getVec();
+
 
 //88, 136, 160
 //22, 34, 40
@@ -49,6 +62,8 @@ private:
 
 
 	map* grid;
+	//for the arrays, [0] is id, [1] is rate
+	std::vector<std::array<int, 2>> vec;
 
 	trainer* player;
 

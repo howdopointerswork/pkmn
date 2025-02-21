@@ -11,25 +11,36 @@ public:
 
 	dbManager();
 
+	bool db_Open();
+
 	bool db_CreateTable();
 
 	bool db_Insert(std::string name);
 
-	bool openFile(std::string file); //open file
+	bool openFile(std::string open); //open file
 
-	void insertFromFile(std::ifstream file);
+	void insertFromFile();
+
+	void printSelect(int num);
 
 	void db_Close();
 
+	void db_clearTable();
+
+	void resetAutoInc();
+
+
+	
 
 
 
 
 
 private:
-
-	bool db_Open();
-
+	//why private
+	
+	std::ifstream file;
+	
 	sqlite3* db;
 
 	int err; //for checking status

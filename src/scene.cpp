@@ -92,3 +92,36 @@ void scene::setGrid(map* m){
 
 	this->grid = m;
 }
+
+
+
+void scene::vec_add(std::array<int,2> arr){
+
+	this->vec.push_back(arr);
+}
+
+void scene::vec_clear(){
+
+	this->vec.clear();
+
+}
+
+int scene::getRate(int index){
+
+	return this->vec[index][1];
+}
+
+int scene::getID(int index){
+
+	return this->vec[index][0];
+}
+
+int scene::vec_size(){
+
+	return this->vec.size();
+}
+
+std::vector<std::array<int, 2>> scene::getVec(){
+
+	return this->vec;
+}

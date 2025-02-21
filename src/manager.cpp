@@ -1,6 +1,5 @@
-#include <iostream>
 #include "manager.hpp"
-#include <math.h>
+
 
 #pragma once
 
@@ -13,6 +12,8 @@
 manager::manager(){
 
 	this->choice = -1;
+	this->db->db_Open();
+
 
 }
 
@@ -23,6 +24,7 @@ void manager::populateGrid(map* grid, int size){
 	//or make custom scenes for each
 	// and a struct to hold these scenes
 
+	//i is y, j is x
 	int count = 0;
 
 	for(int i=0; i<size; ++i){
@@ -164,6 +166,8 @@ bool manager::boundaryCheck(){ //change to move function
 								std::cout << "Y: " << user->getY() << std::endl;
 
 								std::cout << "ID: " << area->getTile(xyu+user->getX())->getID() << std::endl;
+								std::cout << checkEncounter(area->getTile(xyu+user->getX())) << std::endl;
+								//if id is 3, run rng here
 
 								return true;
 						}
@@ -172,7 +176,7 @@ bool manager::boundaryCheck(){ //change to move function
 							std::cout << "Error: Tile is occupied" << std::endl;
 							user->setDir(this->choice);
 						
-							user->matchDir(area->getTile(xyu+user->getX())->getX(), area->getTile(xyu+(user->getX()))->getY());
+							user->matchDir(area->getTile(xy+user->getX())->getX(), area->getTile(xyu+(user->getX()))->getY());
 
 						}		
 
@@ -215,8 +219,8 @@ bool manager::boundaryCheck(){ //change to move function
 								std::cout << "X: " << user->getX() << std::endl;
 								std::cout << "Y: " << user->getY() << std::endl;
 
-								std::cout << "ID: " << area->getTile(xy+user->getX()-1)->getID() << std::endl;
-
+								std::cout << "ID: " << area->getTile(xy+user->getX())->getID() << std::endl;
+								std::cout << checkEncounter(area->getTile(xy+user->getX())) << std::endl;
 								return true;
 						}
 						else{
@@ -260,7 +264,8 @@ bool manager::boundaryCheck(){ //change to move function
 								std::cout << "X: " << user->getX() << std::endl;
 								std::cout << "Y: " << user->getY() << std::endl;
 
-								std::cout << "ID: " << area->getTile(xy+user->getX()+1)->getID() << std::endl;
+								std::cout << "ID: " << area->getTile(xy+user->getX())->getID() << std::endl;
+								std::cout << checkEncounter(area->getTile(xy+user->getX())) << std::endl;
 								return true;
 						}
 						else{
@@ -309,13 +314,14 @@ bool manager::boundaryCheck(){ //change to move function
 								std::cout << "Y: " << user->getY() << std::endl;
 
 								std::cout << "ID: " << area->getTile(xyd+user->getX())->getID() << std::endl;
+								std::cout << checkEncounter(area->getTile(xyd+user->getX())) << std::endl;
 								return true;
 						}
 						else{
 
 							std::cout << "Error: Tile is occupied" << std::endl;
 							user->setDir(this->choice);
-							user->matchDir(area->getTile(xyd+user->getX())->getX(), area->getTile(xyd+(user->getX()))->getY());
+							user->matchDir(area->getTile(xy+user->getX())->getX(), area->getTile(xyd+(user->getX()))->getY());
 						}
 
 						
@@ -513,4 +519,48 @@ void manager::interact(trainer* user, tile* pos){
 	}
 
 	std::cout << "Tile at Interact: " << pos->getX() << ", " << pos->getY() << std::endl;
+}
+
+
+
+bool manager::checkEncounter(tile* t){
+
+	if(t->getID() == 3){ //ID 3 is wild grass
+
+		std::random_device rng;
+		std::mt19937 gen(rng());
+		std::uniform_int_distribution<> dis(1,5);
+
+		int r = dis(gen);
+		std::cout << "Randomly generated: " << r << std::endl;
+
+		//all below is for debugging
+		//add when r=n
+		//and handle encounter and randomly pick a pokemon
+		//generate from 1-100 and check if in the bounds 
+		//rates should be in order for simplicity
+		//0-first rate
+		//first rate+1 - next rate
+		//if last, then previous+1 - 100
+		for(auto i = 0; i<this->current->vec_size(); ++i){
+
+			std::cout << "ID: " << this->current->getID(i) << " Rate: " << this->current->getRate(i) << std::endl;
+			std::cout << "Database Match: " << std::endl;
+			//this->db->openFile("txt/dex.txt");
+			this->db->printSelect(this->current->getID(i));
+			std::cout << std::endl;
+		}
+
+		std::cout << "Working" << std::endl;
+		return true;
+
+
+	}
+	else{
+
+		std::cout << "Tile ID is not 3" << std::endl;
+
+	}
+
+	return 0;
 }

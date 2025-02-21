@@ -35,6 +35,10 @@ int main(){
 
 
 	scn->setPlayer(p1);
+	scn->vec_add({25,50});
+	scn->vec_add({100,30});
+	scn->vec_add({10,9});
+	scn->vec_add({243,1});
 
 	assert(scn->getPlayer() != nullptr);
 
@@ -65,7 +69,11 @@ int main(){
 
 	assert(scn->getGrid() != nullptr);
 
-	assert(area1->getSize() == pow(size,2));
+	std::cout << "Size: " << area1->getSize() << std::endl;
+
+	std::cout << "Size with pow: " << pow(size,2) << std::endl;
+
+	assert(area1->getSize() == static_cast<int>(pow(size,2)));
 
 	mgr->setCurrent(scn);
 

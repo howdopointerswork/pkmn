@@ -1,5 +1,9 @@
 #include <iostream>
+#include <random>
+#include <map>
+#include <math.h>
 #include "scene.cpp"
+#include "dbManager.cpp"
 
 
 #pragma once
@@ -35,6 +39,8 @@ public:
 
 	void interact(trainer* user, tile* pos);
 
+	bool checkEncounter(tile* t); //map - distribution and correlating ID
+
 
 
 	//swap scene
@@ -42,6 +48,8 @@ public:
 private:
 
 	scene* current; //scene loader 
+
+	dbManager* db;
 
 	int choice;
 
