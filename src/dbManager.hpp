@@ -17,6 +17,8 @@ public:
 
 	bool db_Insert(std::string name);
 
+	bool db_Insert(int t1, int t2);
+
 	bool openFile(std::string open); //open file
 
 	void insertFromFile();
@@ -29,8 +31,9 @@ public:
 
 	void resetAutoInc();
 
+	void loadTypes();
 
-	
+	void addCol(); //debug
 
 
 

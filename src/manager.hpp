@@ -41,6 +41,8 @@ public:
 
 	bool checkEncounter(tile* t); //map - distribution and correlating ID
 
+	//resolve type here
+
 
 
 	//swap scene
