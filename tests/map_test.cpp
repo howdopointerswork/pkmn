@@ -35,10 +35,10 @@ int main(){
 
 
 	scn->setPlayer(p1);
-	scn->vec_add({25,50});
-	scn->vec_add({100,30});
-	scn->vec_add({10,9});
-	scn->vec_add({243,1});
+	scn->vec_add({25,500});
+	scn->vec_add({100,800});
+	scn->vec_add({10,890});
+	scn->vec_add({243,1000});
 
 	assert(scn->getPlayer() != nullptr);
 

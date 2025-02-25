@@ -10,16 +10,27 @@ int main(){
 	assert(db->openFile("txt/types.txt") == true);
 	std::cout << "File opened successfully" << std::endl;
 
+	db->begin();
 	db->db_CreateTable();
+	db->db_clearTable();
+	db->resetAutoInc();
+	//db->insertFromFile();
 	//db->addCol();
-	//db->loadTypes();
+	db->loadTypes();
+	db->closeFile();
+	db->openFile("txt/dex.txt");
 
-	
+	//db->db_clearTable();
+	db->update();
+	db->commit();
+	db->close();
+
+	//db->printSelectType(24, 5, 0);
 /*
 
 	db->db_clearTable();
-	db->resetAutoInc();
-	db->insertFromFile();
+	
+	
 */
 	//db->printSelect(25);
 

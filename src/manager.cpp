@@ -79,8 +79,23 @@ void manager::tileCheck(map* grid){
 
 
 
-void manager::mainLoop(){
+void manager::forkScene(int id){
 
+
+	if(encounter){
+
+		//fork here
+		std::cout << "Encounter is true, forking..." << std::endl;
+		
+		encounter = false;
+		/*while(this->choice != 0){
+
+			
+
+		}*/
+		this->db->printSelect(id);
+
+	}
 
 
 }
@@ -112,7 +127,17 @@ void manager::movePlayer(){
 }
 
 
+
+
+//boundaryCheck / movement function 2 here
+
+
+
+
+
+
 //to be refactored with args
+
 //debug version
 bool manager::boundaryCheck(){ //change to move function
 
@@ -413,7 +438,6 @@ void manager::setCurrent(scene* scn){
 
 scene* manager::getCurrent(){
 
-
 	return this->current;
 }
 
@@ -426,7 +450,7 @@ void manager::swapPlayer(tile* t1, tile* t2, trainer* current){
 
 	//this->current->getPlayer()->matchDir(t2->getX(), t2->getY());
 
-	std::string result;
+	//std::string result;
 		
 	//result = this->current->getPlayer()->canInteract() ? "Interaction Detected" : "No Interaction Detected..";
 
@@ -522,26 +546,29 @@ void manager::interact(trainer* user, tile* pos){
 }
 
 
+int manager::rng(int min, int max){
+
+		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+		std::random_device rng;
+		std::mt19937 gen(seed);
+		std::uniform_int_distribution<> dis(min,max);
+
+		int r = dis(gen);
+
+		std::cout << "Randomly generated: " << r << std::endl;
+		
+		return r;
+}
+
 
 bool manager::checkEncounter(tile* t){
 
 	if(t->getID() == 3){ //ID 3 is wild grass
+		
 
-		std::random_device rng;
-		std::mt19937 gen(rng());
-		std::uniform_int_distribution<> dis(1,5);
+		int r = rng(1,5);	
 
-		int r = dis(gen);
-		std::cout << "Randomly generated: " << r << std::endl;
-
-		//all below is for debugging
-		//add when r=n
-		//and handle encounter and randomly pick a pokemon
-		//generate from 1-100 and check if in the bounds 
-		//rates should be in order for simplicity
-		//0-first rate
-		//first rate+1 - next rate
-		//if last, then previous+1 - 100
+		//for debugging
 		for(auto i = 0; i<this->current->vec_size(); ++i){
 
 			std::cout << "ID: " << this->current->getID(i) << " Rate: " << this->current->getRate(i) << std::endl;
@@ -549,6 +576,32 @@ bool manager::checkEncounter(tile* t){
 			//this->db->openFile("txt/dex.txt");
 			this->db->printSelect(this->current->getID(i));
 			std::cout << std::endl;
+		}
+		//change to arg
+		if(r == 5){
+
+			encounter = true;
+			int r = rng(1,1000);
+			int start = 0;
+			int last = 0;
+			int id;
+
+			for(auto i=0; i<this->current->vec_size(); ++i){
+
+				last = this->current->getRate(i);
+
+				if(r >= start && r<last){
+					std::cout << "Rate: " << r << std::endl;
+					id = this->current->getID(i);
+					break;
+				}
+				else{
+
+					start = last;
+				}
+			}
+
+			forkScene(id);
 		}
 
 		std::cout << "Working" << std::endl;
@@ -563,4 +616,17 @@ bool manager::checkEncounter(tile* t){
 	}
 
 	return 0;
+}
+
+
+
+
+bool manager::checkBorder(tile* t){
+
+	if(t->getID() == 4){
+
+		std::cout << "Border Detected" << std::endl;
+		return true;
+	}
+	return false;
 }

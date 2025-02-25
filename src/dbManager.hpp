@@ -21,6 +21,8 @@ public:
 
 	bool openFile(std::string open); //open file
 
+	void closeFile();
+
 	void insertFromFile();
 
 	void printSelect(int num);
@@ -34,6 +36,17 @@ public:
 	void loadTypes();
 
 	void addCol(); //debug
+
+	void printSelectType(int id, int t1, int t2);
+
+	void begin();
+
+	void commit();
+
+	void close();
+
+	//only used for fixing initial insert query
+	void update();
 
 
 

@@ -4,6 +4,7 @@
 #include <math.h>
 #include "scene.cpp"
 #include "dbManager.cpp"
+#include <chrono>
 
 
 #pragma once
@@ -19,7 +20,7 @@ public:
 
 	void customizeScene(); //add args
 
-	void forkScene();
+	void forkScene(int id);
 
 	void populateGrid(map* grid, int size);
 
@@ -41,6 +42,11 @@ public:
 
 	bool checkEncounter(tile* t); //map - distribution and correlating ID
 
+	int rng(int min, int max);
+
+
+
+
 	//resolve type here
 
 
@@ -54,6 +60,8 @@ private:
 	dbManager* db;
 
 	int choice;
+
+	bool encounter;
 
 
 };

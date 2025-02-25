@@ -74,7 +74,7 @@ bool dbManager::db_Insert(std::string name){
 bool dbManager::db_Insert(int t1, int t2){
 
 
-	std::string query = "INSERT INTO dex (type1, type2) VALUES(" + std::to_string(t1) + ", " + std::to_string(t2) + ");";
+	std::string query = "INSERT INTO dex (name, type1, type2) VALUES(''," + std::to_string(t1) + ", " + std::to_string(t2) + ");";
 
 	const char* insert = query.c_str();
 
@@ -82,12 +82,13 @@ bool dbManager::db_Insert(int t1, int t2){
 
 	if(err != SQLITE_OK){
 
-		std::cout << "Inserted successfully" << std::endl;
+		std::cerr << "Error: " << sqlite3_errmsg(db) << std::endl;
+		
 		return 1;
 	}
 	else{
 
-		std::cerr << "Error: " << sqlite3_errmsg(db) << std::endl;
+		std::cout << "Inserted successfully" << std::endl;
 	}
 
 	return true;
@@ -100,6 +101,12 @@ bool dbManager::openFile(std::string open){
 	file.open(open);
 
 	return file.is_open() ? true : false;
+}
+
+
+void dbManager::closeFile(){
+
+	file.close();
 }
 
 
@@ -154,8 +161,6 @@ void dbManager::loadTypes(){
 		i=1;
 
 		
-
-
 	
 	
 
@@ -182,6 +187,15 @@ static int callback(void* data, int argc, char** argv, char** colname){
 }
 
 
+static int callbackMulti(void* data, int argc, char** argv, char** colname){
+
+
+	std::cout << argv[1] << argv[2] << argv[3] << std::endl;
+
+	return 0;
+}
+
+
 void dbManager::printSelect(int num){
 
 	std::string query = "SELECT * FROM dex WHERE id=" + std::to_string(num) + ";";
@@ -200,6 +214,28 @@ void dbManager::printSelect(int num){
 	}
 }
 
+
+
+void dbManager::printSelectType(int id, int t1, int t2){
+
+	std::string query = "SELECT * FROM dex WHERE id=" + std::to_string(id) + " AND type1=" + std::to_string(t1) + " AND type2=" + std::to_string(t2) + ";";
+
+ 	const char* select = query.c_str();
+
+ 	err = sqlite3_exec(db, select, callbackMulti, nullptr, &msg);
+
+ 	if(err != SQLITE_OK){
+
+ 		std::cerr << "Error: " << sqlite3_errmsg(db) << std::endl;
+
+
+ 	}else{
+
+ 		std::cout << "Select statement executed successfully" << std::endl;
+ 	}
+
+
+}
 
 
 void dbManager::db_clearTable(){
@@ -259,6 +295,53 @@ void dbManager::addCol(){
 
 		std::cout << "Added column successfully" << std::endl;
 	}
+
+
+}
+
+
+void dbManager::begin(){
+
+	sqlite3_exec(db, "BEGIN TRANSACTION;", 0, 0, 0);
+}
+
+
+void dbManager::commit(){
+
+	sqlite3_exec(db, "COMMIT;", 0, 0, 0);
+}
+
+
+void dbManager::close(){
+
+	sqlite3_close(db);
+}
+
+void dbManager::update(){
+
+	int i=1;
+
+	std::string line;
+
+	while(std::getline(file, line)){
+
+		std::string query = "UPDATE dex SET name = '" + line + "' WHERE id=" + std::to_string(i) + ";";
+		const char* update = query.c_str();
+
+		err=sqlite3_exec(db, update, nullptr, nullptr, &msg);
+
+		if(err !=SQLITE_OK){
+
+			std::cerr << "Error: " << sqlite3_errmsg(db) << std::endl;
+		}
+		else{
+			std::cout << "Updated successfully" << std::endl;
+		}
+
+		++i;
+
+	}
+
 
 
 }
