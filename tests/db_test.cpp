@@ -11,7 +11,7 @@ int main(){
 	std::cout << "File opened successfully" << std::endl;
 
 	db->begin();
-	db->db_CreateTable();
+	/*db->db_CreateTable();
 	db->db_clearTable();
 	db->resetAutoInc();
 	//db->insertFromFile();
@@ -21,7 +21,9 @@ int main(){
 	db->openFile("txt/dex.txt");
 
 	//db->db_clearTable();
-	db->update();
+	db->update();*/
+	db->FK_ON();
+	db->db_CreatePCTable();
 	db->commit();
 	db->close();
 

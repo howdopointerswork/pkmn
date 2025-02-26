@@ -79,25 +79,84 @@ void manager::tileCheck(map* grid){
 
 
 
-void manager::forkScene(int id){
+void manager::wildEncounter(int id){
 
-
-	if(encounter){
+//fork is not for windows
+//either check OS and create process accordingly or handle by switching scenes
+//^last scene MUST be kept in memory!
+	if(this->encounter){
 
 		//fork here
-		std::cout << "Encounter is true, forking..." << std::endl;
+		std::cout << "Encounter is true..." << std::endl;
+
 		
-		encounter = false;
-		/*while(this->choice != 0){
+		while(this->choice != 0){
 
-			
 
-		}*/
-		this->db->printSelect(id);
+			this->db->printSelect(id);
+			battleMenu();
+			battleChoice(this->choice);
+
+		}
+		
 
 	}
 
 
+}
+
+
+
+void manager::battleBag(){
+
+	/*
+	1 = med
+	2 = pb
+	4 = berry
+	5 = battle
+	*/
+
+
+	//fight will use the four moves of the player's pokemon
+	//needs user / party / PC table
+	//in party bool
+	//moves used by cpu could be randomized within a range
+
+	//bag should display each item you have
+	//and have an associated int with choice
+	//and then it processes by calling use function - on a certain pkmn
+	//if of type any other than pokeball, use on pokemon
+	//otherwise, initiate catching block - randomize based on pokeball (check id)
+
+
+	//Party pokemon should display them
+	//and give a choice
+	//and switch the active pokemon with it
+	//create active pkmn 
+	//delete and create new if switching out ???
+}
+
+
+void manager::battleChoice(int n){
+
+	switch(n){
+
+		case 0:
+			this->encounter = false;
+			resetChoice();
+			std::cout << "Got away safely" << std::endl;
+			break;
+		case 1:
+			std::cout << "Fight" << std::endl;
+			break;
+		case 2:
+			std::cout << "Bag" << std::endl; 
+			break;
+		case 3:
+			std::cout << "Party Pokemon here" << std::endl;
+			break;
+
+	}
 }
 
 
@@ -116,7 +175,7 @@ void manager::movePlayer(){
 		std::cout << "5. Interact" << std::endl;
 		//add menu and change actions based on context
 
-		std::cin >> choice; 
+		std::cin >> this->choice; 
 		this->boundaryCheck();
 
 		//boundary check
@@ -124,6 +183,20 @@ void manager::movePlayer(){
 	}
 
 
+}
+
+
+
+void manager::battleMenu(){
+
+	std::cout << "What will " + this->current->getPlayer()->getName() + " do?" << std::endl;
+
+	std::cout << "0. Run" << std::endl;
+	std::cout << "1. Fight" << std::endl;
+	std::cout << "2. Bag" << std::endl;
+	std::cout << "3. Pokemon" << std::endl;
+
+	std::cin >> this->choice;
 }
 
 
@@ -600,8 +673,7 @@ bool manager::checkEncounter(tile* t){
 					start = last;
 				}
 			}
-
-			forkScene(id);
+			wildEncounter(id);
 		}
 
 		std::cout << "Working" << std::endl;

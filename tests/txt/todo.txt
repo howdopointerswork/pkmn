@@ -1,0 +1,4 @@
+- forking
+- menu: save / party / bag / options / trainer / 
+- condense movement into function
+- fix build

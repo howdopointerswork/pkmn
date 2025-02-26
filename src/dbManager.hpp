@@ -9,6 +9,11 @@ class dbManager{
 
 public:
 
+	//all non-named non-db associated functions
+	//refer to dex table
+	//all others have names
+	//not overwriting them for debugging purposes
+
 	dbManager();
 
 	bool db_Open();
@@ -48,8 +53,13 @@ public:
 	//only used for fixing initial insert query
 	void update();
 
+	bool db_CreatePCTable(); //all of user's pokemon
 
+	void FK_ON();
 
+	//need bag table
+
+	//and user info table (money, id, progress, badges, etc.) - could do this in txt file as well
 
 
 private:

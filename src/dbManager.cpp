@@ -50,6 +50,27 @@ bool dbManager::db_CreateTable(){
 
 }
 
+bool dbManager::db_CreatePCTable(){
+
+	const char* makeTable = "CREATE TABLE IF NOT EXISTS pc (id INTEGER, name TEXT, lvl INTEGER, inParty INTEGER, isShiny INTEGER, status INTEGER, m1 INTEGER, m2 INTEGER, m3 INTEGER, m4 INTEGER, FOREIGN KEY (id) REFERENCES dex(id) );";
+
+	err = sqlite3_exec(db, makeTable, nullptr, nullptr, &msg);
+
+	if (err != SQLITE_OK){
+
+		std::cerr << "Error: " << msg << std::endl;
+		return 0;
+	}
+	std::cout << "Created table successfully" << std::endl;
+	return 1;
+}
+
+
+void dbManager::FK_ON(){
+
+	sqlite3_exec(db, "PRAGMA foreign_keys = ON;", nullptr, nullptr, &msg);
+}
+
 
 bool dbManager::db_Insert(std::string name){
 

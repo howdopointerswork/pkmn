@@ -5,6 +5,7 @@
 #include "scene.cpp"
 #include "dbManager.cpp"
 #include <chrono>
+#include <unistd.h>
 
 
 #pragma once
@@ -20,7 +21,7 @@ public:
 
 	void customizeScene(); //add args
 
-	void forkScene(int id);
+	void wildEncounter(int id);
 
 	void populateGrid(map* grid, int size);
 
@@ -43,6 +44,15 @@ public:
 	bool checkEncounter(tile* t); //map - distribution and correlating ID
 
 	int rng(int min, int max);
+
+	bool checkBorder(tile* t);
+
+	void battleMenu();
+
+	void battleChoice(int n);
+
+	void battleBag();
+
 
 
 
