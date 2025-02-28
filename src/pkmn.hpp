@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "type.cpp"
 #include "item.hpp"
 #include "move.hpp"
@@ -11,43 +12,34 @@ class pkmn{
 	
 	public:
 
-		pkmn(type* t1, type* t2, int dexnum, str name, int atk, int def, int spd, int spatk, int spdef, int hp, float ht, float wt, str nature);
+		pkmn(type* t1, type* t2, int dexnum, str name, float ht, float wt);
 
 		void altFactor(float alt);
 
-		void resetFactor();
+		void resetFactor(); //reset type effects if handling >1 pkmn
 
-		float getFactor();
+		float getFactor(); //type effectiveness 
 
-		void setNature(str nature);
+		void setNature(int nature);
 		
 		str getName();
 
 		void setName(str name);
 
-		int getAtk();
+		unsigned int getStat(int id); //check 48-55
 
-		int getDef();
+		void setStat(int id, int val);
 
-		int getSpd();
-
-		int getHP();
-
-		int getSpAtk();
-
-		int getSpDef();
+		void addStats(int hp, int atk, int def, int spatk, int spdef, int spd);
 
 		int getDexNo();
 
-		str getNature();
+		int getNature();
 
 
 		type* type1; //public for now
 
 		type* type2; //public for now
-
-
-
 		
 
 	private:
@@ -56,17 +48,15 @@ class pkmn{
 
 		float factor; //for type calculating
 
-		int atk; //attack
-
-		int def; //defense
-
-		int spd; //speed
-
-		int spatk; //special attack
-
-		int spdef; //special defense
-
-		int hp; //hp
+		std::vector<unsigned int> stats; //to hold all stats
+		/*
+		0 - HP
+		1 - Atk
+		2 - Def
+		3 - Sp. Atk
+		4 - Sp. Def
+		5 - Spd	
+		*/
 
 		str name; //name
 
@@ -78,13 +68,13 @@ class pkmn{
 
 		int lvl; //level
 
-		str nature; //nature
+		int nature; //nature
 
 		int status; //status condition
 
-		item* current; //currently held item, based on toUse 
+		int egg_group;
 
-		str egg_group;
+		item* current; //currently held item, based on toUse 
 
 		move* moveset[4];
 

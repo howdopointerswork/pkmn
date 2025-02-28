@@ -7,7 +7,7 @@ int main(){
 
 	dbManager* db = new dbManager();
 
-	assert(db->openFile("txt/types.txt") == true);
+	assert(db->openFile("../tests/txt/types.txt") == true);
 	std::cout << "File opened successfully" << std::endl;
 
 	db->begin();
@@ -22,8 +22,10 @@ int main(){
 
 	//db->db_clearTable();
 	db->update();*/
-	db->FK_ON();
-	db->db_CreatePCTable();
+	//db->FK_ON();
+	//db->db_CreatePCTable();
+	db->db_CreateMoveTable();
+	db->addCol();
 	db->commit();
 	db->close();
 

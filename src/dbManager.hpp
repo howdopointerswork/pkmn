@@ -55,6 +55,8 @@ public:
 
 	bool db_CreatePCTable(); //all of user's pokemon
 
+	bool db_CreateMoveTable();
+
 	void FK_ON();
 
 	//need bag table

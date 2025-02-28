@@ -11,7 +11,7 @@ class move{
 
 	public:
 
-		move(str name, int id, type* tp, bool is_physical, int pp, int dmg);
+		move(str name, int id, type* tp, int cat, int pp, int dmg, int acc);
 
 		const str getName();
 
@@ -19,7 +19,7 @@ class move{
 
 		type* getType();
 
-		const bool getPhysical();
+		const int getCat();
 
 		const int getPP();
 
@@ -38,11 +38,13 @@ class move{
 
 		type* tp; 
 
-		bool is_physical; //special or physical
+		int cat; //category - 0 for status, 1 for physical, 2 for special
 
 		int pp;
 
 		int dmg;
+
+		int acc;
 
 		bool isTM; //false if learned, taught, or HM
 

@@ -66,6 +66,24 @@ bool dbManager::db_CreatePCTable(){
 }
 
 
+bool dbManager::db_CreateMoveTable(){
+
+	const char* makeTable = "CREATE TABLE IF NOT EXISTS moves (id INTEGER PRIMARY KEY AUTOINCREMENT, type INTEGER, dmg INTEGER, pp INTEGER, phys_spec INTEGER);";
+
+	err = sqlite3_exec(db, makeTable, nullptr, nullptr, &msg);
+
+	if(err != SQLITE_OK){
+
+		std::cerr << "Error: " << msg << std::endl;
+		return 0;
+	}
+	std::cout << "Created table successfully" << std::endl;
+	return 1;
+
+
+}
+
+
 void dbManager::FK_ON(){
 
 	sqlite3_exec(db, "PRAGMA foreign_keys = ON;", nullptr, nullptr, &msg);
@@ -301,7 +319,7 @@ void dbManager::resetAutoInc(){
 void dbManager::addCol(){
 
 
-	std::string query = "ALTER TABLE dex ADD COLUMN type2 INTEGER;";
+	std::string query = "ALTER TABLE moves ADD COLUMN acc INTEGER;";
 
 
 	const char* add = query.c_str();

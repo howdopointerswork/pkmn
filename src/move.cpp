@@ -5,7 +5,7 @@
 
 typedef std::string str;
 
-move::move(str name, int id, type* tp, bool is_physical, int pp, int dmg){
+move::move(str name, int id, type* tp, int cat, int pp, int dmg, int acc){
 
 	this->name = name;
 
@@ -13,11 +13,13 @@ move::move(str name, int id, type* tp, bool is_physical, int pp, int dmg){
 
 	this->tp = tp;
 
-	this->is_physical = is_physical;
+	this->cat = cat;
 
 	this->pp = pp;
 
 	this->dmg = dmg;
+
+	this->acc = acc;
 }
 
 
