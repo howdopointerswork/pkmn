@@ -7,32 +7,24 @@ int main(){
 
 	dbManager* db = new dbManager();
 
-	assert(db->openFile("../tests/txt/types.txt") == true);
+	assert(db->openFile("../tests/txt/moves.txt") == true);
 	std::cout << "File opened successfully" << std::endl;
 
 	db->begin();
-	/*db->db_CreateTable();
-	db->db_clearTable();
-	db->resetAutoInc();
+	//db->loadTypes();
 	//db->insertFromFile();
-	//db->addCol();
-	db->loadTypes();
-	db->closeFile();
-	db->openFile("txt/dex.txt");
-
 	//db->db_clearTable();
-	db->update();*/
-	//db->FK_ON();
-	//db->db_CreatePCTable();
-	db->db_CreateMoveTable();
-	db->addCol();
+	//db->resetAutoInc();
+
+	//std::cout << "Here" << std::endl;
+	//db->loadMoves();
 	db->commit();
 	db->close();
 
 	//db->printSelectType(24, 5, 0);
 /*
 
-	db->db_clearTable();
+	
 	
 	
 */

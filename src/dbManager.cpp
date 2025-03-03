@@ -123,7 +123,7 @@ bool dbManager::db_Insert(int t1, int t2){
 
 		std::cerr << "Error: " << sqlite3_errmsg(db) << std::endl;
 		
-		return 1;
+		return 0;
 	}
 	else{
 
@@ -131,6 +131,40 @@ bool dbManager::db_Insert(int t1, int t2){
 	}
 
 	return true;
+}
+
+
+bool dbManager::db_Insert(std::vector<std::string> vec){
+
+	/*int type = std::stoi(vec[0]);
+	int dmg = std::stoi(vec[1]);
+	int pp = std::stoi(vec[2]);
+	int cat = std::stoi(vec[3]);
+	int acc = std::stoi(vec[5]);*/
+
+	//vec[4] is name string
+	std::cout << "Size check: " << vec.size() << std::endl;
+	std::string query = "INSERT INTO moves (type, dmg, pp, phys_spec, name, acc) VALUES (" + vec[0] + ", " + vec[1] + ", " + vec[2] + ", " + vec[3] + ", '" + vec[4] + "', " + vec[5] + ");";
+
+	const char* insert = query.c_str();
+	std::cout << "Before exec" << std::endl;
+	err = sqlite3_exec(db, insert, nullptr, nullptr, &msg);
+	std::cout << "After exec" << std::endl;
+	if(err != SQLITE_OK){
+
+		std::cerr << "Error: " << sqlite3_errmsg(db) << std::endl;
+
+		return 0;
+	}
+	else{
+
+		std::cout << "Inserted successfully" << std::endl;
+
+	}
+	
+
+	return 1;
+
 }
 
 
@@ -209,6 +243,54 @@ void dbManager::loadTypes(){
 }
 
 
+void dbManager::loadMoves(){
+
+	std::string line;
+	int i=0;
+	int last = 0;
+	std::vector<std::string> vec;
+	while(std::getline(file, line)){
+
+		while(i < line.length()){
+
+			if(line.at(i) == ' '){
+
+	
+				std::cout << line.substr(last,i-last) << std::endl;
+			//	std::cout <<  << std::endl;
+				vec.push_back(line.substr(last,i-last));
+				last = i+1;
+				
+				
+			}
+			++i;
+		}
+
+		if(line.substr(line.length()-4,1) == " "){
+
+			std::cout << "3 length acc" << std::endl;
+			std::cout << line.substr(line.length()-3, 3) << std::endl;
+			vec.push_back(line.substr(line.length()-3, 3));
+		}
+		else{
+
+			std::cout << "2 length acc" << std::endl;
+			std::cout << line.substr(line.length()-2, 2) << std::endl;
+			vec.push_back(line.substr(line.length()-2, 2));
+		}
+		
+		std::cout << "Made it here" << std::endl;
+		std::cout << "First size check: " << vec.size() << std::endl;
+		db_Insert(vec);
+		i=0;
+		last = i;
+		vec.clear();
+			
+
+	}		
+}
+
+
 
 void dbManager::db_Close(){
 
@@ -279,7 +361,7 @@ void dbManager::printSelectType(int id, int t1, int t2){
 
 void dbManager::db_clearTable(){
 
-	std::string query = "DELETE FROM dex;";
+	std::string query = "DELETE FROM moves;";
 
 	const char* del = query.c_str();
 
@@ -298,7 +380,7 @@ void dbManager::db_clearTable(){
 
 void dbManager::resetAutoInc(){
 
-	std::string query = "DELETE FROM sqlite_sequence WHERE name = 'dex';";
+	std::string query = "DELETE FROM sqlite_sequence WHERE name = 'moves';";
 
 	const char* autoinc = query.c_str();
 

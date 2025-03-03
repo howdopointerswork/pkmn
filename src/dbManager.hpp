@@ -2,6 +2,7 @@
 #include <sqlite3.h>
 #include <string>
 #include <fstream>
+#include <vector>
 
 #pragma once
 
@@ -24,6 +25,8 @@ public:
 
 	bool db_Insert(int t1, int t2);
 
+	bool db_Insert (std::vector<std::string> vec);
+
 	bool openFile(std::string open); //open file
 
 	void closeFile();
@@ -39,6 +42,8 @@ public:
 	void resetAutoInc();
 
 	void loadTypes();
+
+	void loadMoves();
 
 	void addCol(); //debug
 
