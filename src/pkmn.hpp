@@ -12,7 +12,7 @@ class pkmn{
 	
 	public:
 
-		pkmn(type* t1, type* t2, int dexnum, str name, float ht, float wt);
+		pkmn(int dexnum, str name, type* t1, type* t2);
 
 		void altFactor(float alt);
 

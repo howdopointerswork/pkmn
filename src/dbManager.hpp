@@ -3,6 +3,8 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <stdexcept>
+
 
 #pragma once
 
@@ -64,6 +66,13 @@ public:
 
 	void FK_ON();
 
+	std::string getData(int i);
+
+
+
+
+
+	//void substring(std::string line, int i, int last, std::<std::string> vec, int n);
 	//need bag table
 
 	//and user info table (money, id, progress, badges, etc.) - could do this in txt file as well
@@ -80,6 +89,9 @@ private:
 
 	char* msg; //for error message
 
-
+	
 
 };
+
+
+std::vector<std::string> col;

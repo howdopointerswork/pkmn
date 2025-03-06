@@ -702,3 +702,9 @@ bool manager::checkBorder(tile* t){
 	}
 	return false;
 }
+
+
+dbManager* manager::getDB(){
+
+	return this->db;
+}

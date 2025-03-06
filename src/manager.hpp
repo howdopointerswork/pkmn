@@ -53,6 +53,8 @@ public:
 
 	void battleBag();
 
+	dbManager* getDB();
+
 
 
 

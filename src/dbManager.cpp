@@ -3,11 +3,80 @@
 
 #pragma once
 
+
+
+
+
+static int callback(void* data, int argc, char** argv, char** colname){
+
+
+	std::cout << argv[1] << std::endl;
+	std::cout << argc << std::endl;
+	std::vector<std::string> vec;
+	for(auto i=0; i<argc; ++i){
+			std::string amal;	
+			int j = 0;         
+			while(argv[i][j] != '\0'){
+
+				amal += argv[i][j];
+				++j;
+			}
+
+			std::cout << "String: " << amal << std::endl;
+			
+			vec.push_back(amal);
+			col.push_back(amal);
+			//std::cout << col.at(0) << std::endl;
+			//col->push_back(result);
+	}
+
+	for(auto k = 0; k<argc; ++k){
+
+		std::cout << vec.at(k) << std::endl;
+		std::cout << "col: " << col.at(k) << std::endl;
+	}
+	return 0;
+}
+
+
+
+static int callbackMulti(void* data, int argc, char** argv, char** colname){
+
+
+	std::cout << argv[1] << argv[2] << argv[3] << std::endl;
+
+	return 0;
+}
+
+
+ static void substring(std::string line, int i, int last, std::vector<std::string>* vec, int n){
+
+ 		std::cout << "Size is: " << vec->size() << std::endl;
+		if(vec->size() == n || i == line.length()){
+
+			return;
+		}
+		else{
+
+			while(line[i] != ' '){
+
+				++i;
+
+			
+			}
+			vec->push_back(line.substr(last, i-last));
+			last = i+1;
+			substring(line, ++i, last, vec, n);
+		}
+}
+
+
+
+
 dbManager::dbManager(){
 
 	this->db_Open();
 	this->db_CreateTable();
-
 
 }
 
@@ -299,24 +368,6 @@ void dbManager::db_Close(){
 
 
 
-static int callback(void* data, int argc, char** argv, char** colname){
-
-
-	std::cout << argv[1] << std::endl;
-
-	return 0;
-}
-
-
-static int callbackMulti(void* data, int argc, char** argv, char** colname){
-
-
-	std::cout << argv[1] << argv[2] << argv[3] << std::endl;
-
-	return 0;
-}
-
-
 void dbManager::printSelect(int num){
 
 	std::string query = "SELECT * FROM dex WHERE id=" + std::to_string(num) + ";";
@@ -463,6 +514,10 @@ void dbManager::update(){
 
 	}
 
-
-
 }
+
+std::string dbManager::getData(int i){
+
+	return col.at(i);
+}
+

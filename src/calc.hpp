@@ -16,5 +16,5 @@ public:
 
 	bool checkVecs(std::vector<int> v, int alt);
 
-
+	
 };

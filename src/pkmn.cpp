@@ -5,7 +5,7 @@
 #pragma once
 
 
-pkmn::pkmn(type* t1, type* t2, int dexnum, str name, float ht, float wt): type1(t1), type2(t2){
+pkmn::pkmn(int dexnum, str name, type* t1, type* t2): type1(t1), type2(t2){
 
 	this->factor = 1.0;
 
