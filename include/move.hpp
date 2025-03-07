@@ -11,7 +11,7 @@ class move{
 
 	public:
 
-		move(str name, int id, type* tp, int cat, int pp, int dmg, int acc);
+		move(int id, type* tp, int dmg, int pp, int cat, str name, int acc);
 
 		const str getName();
 

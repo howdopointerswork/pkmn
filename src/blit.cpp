@@ -1,5 +1,5 @@
 #include <iostream>
-#include "blit.hpp"
+#include "../include/blit.hpp"
 
 
 int main(){

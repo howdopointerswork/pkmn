@@ -1,5 +1,5 @@
 #include <iostream>
-#include "npc.hpp"
+#include "../include/npc.hpp"
 
 #pragma once
 

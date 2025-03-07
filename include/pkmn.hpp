@@ -36,6 +36,8 @@ class pkmn{
 
 		int getNature();
 
+		bool insertMove(move* mv)
+
 
 		type* type1; //public for now
 
@@ -76,7 +78,7 @@ class pkmn{
 
 		item* current; //currently held item, based on toUse 
 
-		move* moveset[4];
+		std::vector<move*>* moveset;
 
 
 };

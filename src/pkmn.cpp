@@ -1,5 +1,5 @@
 #include <iostream>
-#include "pkmn.hpp"
+#include "../include/pkmn.hpp"
 
 
 #pragma once
@@ -87,4 +87,14 @@ int pkmn::getDexNo(){
 	return this->dexnum;
 }
 
-//		int getNature();
+bool insertMove(move* mv){
+
+	unsigned int pre = this->moveset->size();
+
+	if(this->moveset->size() < 4){
+
+		this->moveset->push_back(mv);
+	}
+
+	return (pre == this->moveset->size() ? true : false);
+}

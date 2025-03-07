@@ -1,0 +1,12 @@
+id = 356;
+
+if(id >= 356 && id <= 561)
+"UPDATE dex
+SET t1 = (SELECT t1 WHERE id=id+1)
+SET t2 = (SELECT t2 WHERE id=id+1)
+WHERE id=id;";
+
+++id;
+
+
+Then change sigilyph

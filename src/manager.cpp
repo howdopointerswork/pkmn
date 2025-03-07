@@ -1,4 +1,4 @@
-#include "manager.hpp"
+#include "../include/manager.hpp"
 
 
 #pragma once
@@ -93,7 +93,7 @@ void manager::wildEncounter(int id){
 		while(this->choice != 0){
 
 
-			this->db->printSelect(id);
+			this->db->printSelect(id, "dex");
 			battleMenu();
 			battleChoice(this->choice);
 
@@ -647,7 +647,7 @@ bool manager::checkEncounter(tile* t){
 			std::cout << "ID: " << this->current->getID(i) << " Rate: " << this->current->getRate(i) << std::endl;
 			std::cout << "Database Match: " << std::endl;
 			//this->db->openFile("txt/dex.txt");
-			this->db->printSelect(this->current->getID(i));
+			this->db->printSelect(this->current->getID(i), "dex");
 			std::cout << std::endl;
 		}
 		//change to arg

@@ -35,7 +35,7 @@ public:
 
 	void insertFromFile();
 
-	void printSelect(int num);
+	void printSelect(int num, std::string table);
 
 	void db_Close();
 
@@ -67,6 +67,8 @@ public:
 	void FK_ON();
 
 	std::string getData(int i);
+
+	void fixDex(); //for debugging only, do not delete
 
 
 

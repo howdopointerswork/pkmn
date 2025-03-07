@@ -1,5 +1,5 @@
 #include <iostream>
-#include "type.hpp"
+#include "../include/type.hpp"
 
 #pragma once
 

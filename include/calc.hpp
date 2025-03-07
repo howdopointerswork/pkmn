@@ -16,5 +16,9 @@ public:
 
 	bool checkVecs(std::vector<int> v, int alt);
 
+	bool isEffective(type* atk, type* def);
+
+	
+
 	
 };

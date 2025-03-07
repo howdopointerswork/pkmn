@@ -1,11 +1,11 @@
 #include <iostream>
-#include "move.hpp"
+#include "../include/move.hpp"
 
 #pragma once
 
 typedef std::string str;
 
-move::move(str name, int id, type* tp, int cat, int pp, int dmg, int acc){
+move::move(int id, type* tp, int dmg, int pp, int cat, str name, int acc){
 
 	this->name = name;
 
@@ -27,4 +27,9 @@ type* move::getType(){
 
 
 	return this->tp;
+}
+
+const str move::getName(){
+
+	return this->name;
 }

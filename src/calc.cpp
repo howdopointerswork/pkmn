@@ -1,5 +1,5 @@
 #include <iostream>
-#include "calc.hpp"
+#include "../include/calc.hpp"
 
 #pragma once
 
@@ -365,4 +365,18 @@ void calc::calculate(pkmn* p, int type){
 
 	
 
+}
+
+
+bool calc::isEffective(type* atk, type* def){
+
+	bool se; 
+
+	for(auto wkns : def->weakness){
+
+		se = (atk->getID() == wkns) ?  true : false;
+	}
+
+
+	return se;
 }

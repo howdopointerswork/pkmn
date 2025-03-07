@@ -1,5 +1,5 @@
 #include <iostream>
-#include "dbManager.hpp"
+#include "../include/dbManager.hpp"
 
 #pragma once
 
@@ -13,6 +13,9 @@ static int callback(void* data, int argc, char** argv, char** colname){
 	std::cout << argv[1] << std::endl;
 	std::cout << argc << std::endl;
 	std::vector<std::string> vec;
+
+	col.clear();
+
 	for(auto i=0; i<argc; ++i){
 			std::string amal;	
 			int j = 0;         
@@ -368,9 +371,9 @@ void dbManager::db_Close(){
 
 
 
-void dbManager::printSelect(int num){
+void dbManager::printSelect(int num, std::string table){
 
-	std::string query = "SELECT * FROM dex WHERE id=" + std::to_string(num) + ";";
+	std::string query = "SELECT * FROM " + table + " WHERE id=" + std::to_string(num) + ";";
 
 	const char* select = query.c_str();
 
@@ -521,3 +524,33 @@ std::string dbManager::getData(int i){
 	return col.at(i);
 }
 
+
+void dbManager::fixDex(){
+
+	int id = 356;
+
+	if(id <= 561){
+		
+		std::string query = 
+		"UPDATE dex SET 
+		t1 =(SELECT t1 WHERE id=" + std::to_string(id+1) + "), 
+		t2 =(SELECT t2 WHERE id=" + std::to_string(id+1) + "), 
+		
+		;";
+
+		const char* update = query.c_str();
+
+		err=sqlite3_exec(db, add, nullptr, nullptr, &msg);
+
+		if(err != SQLITE_OK){
+
+			std::cerr << "Error: " << sqlite3_errmsg(db) << std::endl;
+		}
+		else{
+
+			std::cout << "Added column successfully" << std::endl;
+	}
+
+	}
+
+}
