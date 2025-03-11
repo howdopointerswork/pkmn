@@ -23,9 +23,9 @@ public:
 
 	bool db_CreateTable();
 
-	bool db_Insert(std::string name);
+	bool db_Insert(std::string name,  std::string t1, std::string t2);
 
-	bool db_Insert(int t1, int t2);
+	bool db_Insert(int t1, int t2, int i);
 
 	bool db_Insert (std::vector<std::string> vec);
 
@@ -68,10 +68,11 @@ public:
 
 	std::string getData(int i);
 
-	void fixDex(); //for debugging only, do not delete
+	void fixDex(std::string t1, std::string t2); //for debugging only, do not delete
 
 
 
+	std::ifstream file;
 
 
 	//void substring(std::string line, int i, int last, std::<std::string> vec, int n);
@@ -83,7 +84,7 @@ public:
 private:
 	//why private
 	
-	std::ifstream file;
+	
 	
 	sqlite3* db;
 

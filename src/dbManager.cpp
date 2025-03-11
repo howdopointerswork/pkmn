@@ -54,6 +54,8 @@ static int callbackMulti(void* data, int argc, char** argv, char** colname){
 
  static void substring(std::string line, int i, int last, std::vector<std::string>* vec, int n){
 
+		vec->clear();
+
  		std::cout << "Size is: " << vec->size() << std::endl;
 		if(vec->size() == n || i == line.length()){
 
@@ -79,7 +81,7 @@ static int callbackMulti(void* data, int argc, char** argv, char** colname){
 dbManager::dbManager(){
 
 	this->db_Open();
-	this->db_CreateTable();
+	//this->db_CreateTable();
 
 }
 
@@ -162,7 +164,7 @@ void dbManager::FK_ON(){
 }
 
 
-bool dbManager::db_Insert(std::string name){
+bool dbManager::db_Insert(std::string name, std::string t1, std::string t2){
 
 	std::string query = "INSERT INTO dex (name) VALUES('" + name + "');";
 
@@ -182,10 +184,10 @@ bool dbManager::db_Insert(std::string name){
 
 
 
-bool dbManager::db_Insert(int t1, int t2){
+bool dbManager::db_Insert(int t1, int t2, int i){
 
 
-	std::string query = "INSERT INTO dex (name, type1, type2) VALUES(''," + std::to_string(t1) + ", " + std::to_string(t2) + ");";
+	std::string query = "UPDATE dex SET type1 =" + std::to_string(t1) + ", type2 =" + std::to_string(t2) + " WHERE id =" + std::to_string(i) + ";";
 
 	const char* insert = query.c_str();
 
@@ -243,9 +245,9 @@ bool dbManager::db_Insert(std::vector<std::string> vec){
 
 bool dbManager::openFile(std::string open){
 
-	file.open(open);
+	this->file.open(open);
 
-	return file.is_open() ? true : false;
+	return this->file.is_open() ? true : false;
 }
 
 
@@ -260,11 +262,7 @@ void dbManager::insertFromFile(){
 
 	std::string line;
 
-	while(std::getline(file, line)){
 
-		//std::cout << line << std::endl;
-		db_Insert(line);
-	}
 }
 
 
@@ -280,6 +278,7 @@ void dbManager::loadTypes(){
 		//split here
 		//convert to ints here
 		//insert both here
+		++count;
 
 		std::cout << "line: " << line << std::endl; 
 		std::cout << "line subtr: " << line.substr(0,line.size()) << std::endl;
@@ -301,7 +300,7 @@ void dbManager::loadTypes(){
 		std::cout << "t2: " << t2 << std::endl;
 
 
-		db_Insert(t1, t2);
+		db_Insert(t1, t2, count);
 
 		i=1;
 
@@ -415,7 +414,7 @@ void dbManager::printSelectType(int id, int t1, int t2){
 
 void dbManager::db_clearTable(){
 
-	std::string query = "DELETE FROM moves;";
+	std::string query = "DELETE FROM dex;";
 
 	const char* del = query.c_str();
 
@@ -434,7 +433,7 @@ void dbManager::db_clearTable(){
 
 void dbManager::resetAutoInc(){
 
-	std::string query = "DELETE FROM sqlite_sequence WHERE name = 'moves';";
+	std::string query = "DELETE FROM sqlite_sequence WHERE name = 'dex';";
 
 	const char* autoinc = query.c_str();
 
@@ -525,32 +524,23 @@ std::string dbManager::getData(int i){
 }
 
 
-void dbManager::fixDex(){
+void dbManager::fixDex(std::string t1, std::string t2){
 
-	int id = 356;
-
-	if(id <= 561){
 		
-		std::string query = 
-		"UPDATE dex SET 
-		t1 =(SELECT t1 WHERE id=" + std::to_string(id+1) + "), 
-		t2 =(SELECT t2 WHERE id=" + std::to_string(id+1) + "), 
-		
-		;";
+		std::string query = "UPDATE dex SET t1 = (SELECT t1 WHERE id=" + t1 + "), t2 = (SELECT t2 WHERE id=" + t2 + ");";
 
 		const char* update = query.c_str();
 
-		err=sqlite3_exec(db, add, nullptr, nullptr, &msg);
+		err=sqlite3_exec(db, update, nullptr, nullptr, &msg);
 
 		if(err != SQLITE_OK){
 
 			std::cerr << "Error: " << sqlite3_errmsg(db) << std::endl;
 		}
 		else{
-
+     
 			std::cout << "Added column successfully" << std::endl;
 	}
 
-	}
-
 }
+

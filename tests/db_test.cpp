@@ -6,12 +6,33 @@
 int main(){
 
 	dbManager* db = new dbManager();
-
+	
 	std::vector<std::string> vec;
 	std::vector<std::string>* v = &vec;
-	std::string line = "4 20 25 2 Absorb 100";
+	
+	
+	
+	db->begin();
+
+
+	std::cout << db->openFile("../tests/txt/types.txt") << std::endl;
+		//substring(line, 0, 0, v, 2);
+		
+	db->loadTypes();
+	
+
+
+
+	db->commit();
+	db->close();
+
+
+
+	//std::string line = "4 20 25 2 Absorb 100";
 	std::cout << "Right here" << std::endl;
-	substring(line, 0, 0, v, 6);
+
+
+	/*substring(line, 0, 0, v, 6);
 
 	std::cout << "Size: " << vec.size() << std::endl;
 
