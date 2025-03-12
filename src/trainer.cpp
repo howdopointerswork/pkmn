@@ -1,6 +1,6 @@
 #include <iostream>
 #include <typeinfo>
-#include "trainer.hpp"
+#include "../include/trainer.hpp"
 
 
 #pragma once

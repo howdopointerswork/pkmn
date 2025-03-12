@@ -2,8 +2,8 @@
 #include <random>
 #include <map>
 #include <math.h>
-#include "scene.cpp"
-#include "dbManager.cpp"
+#include "../src/scene.cpp"
+#include "../src/dbManager.cpp"
 #include <chrono>
 #include <unistd.h>
 

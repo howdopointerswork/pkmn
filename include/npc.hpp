@@ -1,5 +1,5 @@
 #include <iostream>
-#include "object.cpp"
+#include "../src/object.cpp"
 
 #pragma once
 

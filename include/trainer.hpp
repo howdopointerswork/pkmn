@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include "pkmn.cpp"
-#include "item.cpp"
-#include "object.cpp"
+#include "../src/pkmn.cpp"
+#include "../src/item.cpp"
+#include "../src/object.cpp"
 
 
 

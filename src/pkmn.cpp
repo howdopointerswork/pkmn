@@ -16,6 +16,8 @@ pkmn::pkmn(int dexnum, str name, type* t1, type* t2): type1(t1), type2(t2){
 	this->ht = ht;
 
 	this->wt = wt;
+
+
 }
 
 
@@ -87,14 +89,21 @@ int pkmn::getDexNo(){
 	return this->dexnum;
 }
 
-bool insertMove(move* mv){
+bool pkmn::insertMove(move* mv){
 
-	unsigned int pre = this->moveset->size();
 
-	if(this->moveset->size() < 4){
+	this->moveset.push_back(*mv);
+	
 
-		this->moveset->push_back(mv);
+	return true;
+}
+
+
+void pkmn::printMoveset(){
+
+	for(auto i=0; i<this->moveset.size(); ++i){
+
+		std::cout << this->moveset.at(i).getName() << std::endl;
 	}
 
-	return (pre == this->moveset->size() ? true : false);
 }

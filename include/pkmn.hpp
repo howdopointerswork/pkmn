@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "type.cpp"
+#include "../src/type.cpp"
 #include "item.hpp"
 #include "move.hpp"
 
@@ -36,7 +36,9 @@ class pkmn{
 
 		int getNature();
 
-		bool insertMove(move* mv)
+		bool insertMove(move* mv);
+
+		void printMoveset();
 
 
 		type* type1; //public for now
@@ -78,7 +80,7 @@ class pkmn{
 
 		item* current; //currently held item, based on toUse 
 
-		std::vector<move*>* moveset;
+		std::vector<move> moveset;
 
 
 };

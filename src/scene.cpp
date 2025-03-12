@@ -1,5 +1,5 @@
 #include <iostream>
-#include "scene.hpp"
+#include "../include/scene.hpp"
 
 
 #pragma once

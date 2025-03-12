@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdio.h>
-#include "move.cpp"
-#include "object.cpp"
+#include "../src/move.cpp"
+#include "../src/object.cpp"
 
 #pragma once
 

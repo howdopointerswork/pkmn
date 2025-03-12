@@ -371,7 +371,7 @@ void dbManager::db_Close(){
 
 
 void dbManager::printSelect(int num, std::string table){
-
+	
 	std::string query = "SELECT * FROM " + table + " WHERE id=" + std::to_string(num) + ";";
 
 	const char* select = query.c_str();

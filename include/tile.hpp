@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <iostream>
-#include "object.cpp"
-#include "npc.cpp"
-#include "trainer.cpp"
+#include "../src/object.cpp"
+#include "../src/npc.cpp"
+#include "../src/trainer.cpp"
 
 
 #pragma once

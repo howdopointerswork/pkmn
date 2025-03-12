@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include "type.cpp"
-#include "pkmn.cpp"
+#include "../src/type.cpp"
+#include "../src/pkmn.cpp"
 
 #pragma once
 
