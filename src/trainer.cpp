@@ -29,10 +29,9 @@ const str trainer::getName(){
 }
 
 
-const pkmn* trainer::getPartyPkmn(int num){
+pkmn* trainer::getPartyPkmn(int num){
 
-
-	return this->party[num];
+	return this->party.at(num);
 }
 
 
@@ -331,7 +330,23 @@ void trainer::move(int mv){
 }
 
 
+bool trainer::insertPkmn(pkmn* p){
 
+	unsigned int pre = this->party.size()+1;
+
+	if(this->party.size() <= 6){
+
+		this->party.push_back(p);
+	}
+
+	return (pre == this->party.size() ? true : false);
+}
+
+
+unsigned int trainer::getPartySize(){
+
+	return this->party.size();
+}
 
 
 /*void trainer::removeItem(int id){

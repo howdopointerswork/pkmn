@@ -23,7 +23,7 @@ public:
 
 	const str getName(); //get name of trainer
 
-	const pkmn* getPartyPkmn(int num); //get party pokemon by index
+	pkmn* getPartyPkmn(int num); //get party pokemon by index
 
 	const int getID(); //get trainer id
 
@@ -65,6 +65,10 @@ public:
 
 	bool canInteract();
 
+	bool insertPkmn(pkmn* p);
+
+	unsigned int getPartySize();
+
 
 
 	//reset position
@@ -92,7 +96,7 @@ private:
 
 	bool interact; //interact with NPCs, items, etc.
 
-	pkmn* party[6]; //array of 6 pokemon
+	std::vector<pkmn*> party; //array of 6 pokemon
 
 	pocket bag[7]; //bag with 7 pockets
 	//items

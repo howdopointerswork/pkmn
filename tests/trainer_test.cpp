@@ -3,7 +3,7 @@
 #include "../src/trainer.cpp"
 
 
-
+//dbManager to be used in the future
 
 int main(){
 
@@ -30,7 +30,7 @@ int main(){
 	//bag tests / adding items
 
 
-	item* general1 = new general("Item", 1);
+	item* general1 = new general(3, 4, 2);
 
 	t->addItem(general1);
 
@@ -40,7 +40,7 @@ int main(){
 
 
 
-	item* medicine1 = new medicine(1, 100, "MooMoo Milk", 5);
+	item* medicine1 = new medicine(1, 100, 5, 3, 5);
 
 	t->addItem(medicine1);
 
@@ -52,7 +52,7 @@ int main(){
 
 	//test that each item goes into the appropriate pocket
 
-	item* pokeball1 = new pokeball(25, "Great Ball", 2);
+	item* pokeball1 = new pokeball(20, 1, 0, 1);
 
 	t->addItem(pokeball1);
 
@@ -69,9 +69,9 @@ int main(){
 
 	type* type1 = new type(1);
 
-	move* move1 = new move("Test Move", 1, type1, false, 5, 50);
-
-	item* tm01 = new tmhm(move1, "TM01", 1);
+	move* move1 = new move(490, type1, 120, 10, 1, "Thrash", 100);
+	//int id, type* tp, int dmg, int pp, int cat, str name, int acc){
+	item* tm01 = new tmhm(move1, 490, 5, 5);
 
 	t->addItem(tm01);
 
@@ -79,12 +79,12 @@ int main(){
 
 	delete tm01;
 	delete move1;
-	delete type1;
+
 
 
 
 	
-	item* berry1 = new berry(11, 20, "Test Berry", 71);
+	item* berry1 = new berry(11, 20, 4, 10, 7);
 
 	t->addItem(berry1);
 
@@ -94,7 +94,7 @@ int main(){
 
 
 
-	item* battle1 = new battle(4, "Atk Boost", 14);
+	item* battle1 = new battle(4, 14, 0, 6);
 
 	t->addItem(battle1);
 
@@ -104,7 +104,7 @@ int main(){
 
 
 	
-	item* key1 = new key("Key Card", 22);
+	item* key1 = new key(22, 11, 4);
 
 	t->addItem(key1);
 
@@ -112,13 +112,38 @@ int main(){
 
 	delete key1;
 
+	std::cout << "Before party and move tests" << std::endl;
 
+	move* thrash = new move(490, type1, 120, 10, 1, "Thrash", 100);
+	type* t1 = new type(1);
+	type* t2 = new type(0);
+	pkmn* slaking = new pkmn(289, "Slaking", t1, t2);
+
+	t->insertPkmn(slaking);
+
+	assert(t->getPartySize() == 1);
+
+	assert(t->getPartyPkmn(0)->getDexNo() == 289);
+
+
+	slaking->insertMove(thrash);
+
+	assert(slaking->movesetSize() == 1);
+
+	assert(t->getPartyPkmn(0)->movesetSize() == 1);
+
+	delete type1;
+	delete t1;
+	delete t2;
+	delete thrash;
+	delete slaking;
 	delete t;
+
 
 	std::cout << "Tests passed" << std::endl;
 	
 	
-
+	
 
 	return 0;
 }

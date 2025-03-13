@@ -86,16 +86,47 @@ void manager::wildEncounter(int id){
 //^last scene MUST be kept in memory!
 	if(this->encounter){
 
+		 unsigned int fnt1 = 0;//num of fainted pkmn
+		 unsigned int fnt2 = 0;
+		//calculate health according to hp
+		 this->db->printSelect(id, "dex");
+		 //initialize tgt pkmn here
+		 pkmn* tgt = new pkmn(std::stoi(col.at(0)), col.at(1), new type(std::stoi(col.at(2))), new type(std::stoi(col.at(3))));
+		 //set tgt and usr here
+		 this->getCurrent()->setUsr(this->getCurrent()->getTrainer()->getPartyPkmn(0));
+		 this->getCurrent()->setTgt(this->getCurrent()->setTgt(tgt));
+
+		this->getCurrent()->getUsr()->setHealth(100);
+		this->getCurrent()->getTgt()->setHealth(100);
+		
+		bool first = this->compSpd(this->getCurrent()->getUsr()->getStat(5), this->getCurrent()->getTgt()->getStat(5));
+
+		object* use;
+	
+
 		//fork here
 		std::cout << "Encounter is true..." << std::endl;
 
 		
 		while(this->choice != 0){
 
-
-			this->db->printSelect(id, "dex");
+			//use col here
+		
 			battleMenu();
 			battleChoice(this->choice);
+
+			if(this->choice == 1){
+
+				this->getCurrent()->getUsr()->printMoveset();
+				//check first bool
+				//take choice for moves here
+				//loop through moves vector according to size
+				//display number and name
+				//set choice
+				//take move and queue it
+
+			}
+
 
 		}
 		
@@ -143,7 +174,6 @@ void manager::battleChoice(int n){
 
 		case 0:
 			this->encounter = false;
-			resetChoice();
 			std::cout << "Got away safely" << std::endl;
 			break;
 		case 1:
@@ -157,6 +187,7 @@ void manager::battleChoice(int n){
 			break;
 
 	}
+	this->choice = n;
 }
 
 
@@ -708,3 +739,15 @@ dbManager* manager::getDB(){
 
 	return this->db;
 }
+
+
+
+bool manager::compSpd(int s1, int s2){
+
+	return s1 > s2;
+}
+
+//dmg calc
+//consider special and physical
+//calculate for STAB
+//and calc based on stats

@@ -125,3 +125,23 @@ std::vector<std::array<int, 2>> scene::getVec(){
 
 	return this->vec;
 }
+
+pkmn* scene::getUsr(){
+
+	return this->usr;
+}
+
+void scene::setUsr(pkmn* p){
+
+	this->usr = p;
+}
+	
+pkmn* scene::getTgt(){
+
+	return this->tgt;
+}
+
+void scene::setTgt(pkmn* p){
+
+	this->tgt = p;
+}

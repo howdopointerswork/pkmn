@@ -38,6 +38,7 @@ int main(){
 
 	std::cout << "Expected: 7 " << "Actual: " << col.size() << std::endl;
 	std::cout << col.at(1) << std::endl;
+	
 	move* mv = new move(std::stoi(col.at(0)), new type(std::stoi(col.at(1))), std::stoi(col.at(2)), std::stoi(col.at(3)), std::stoi(col.at(4)), col.at(5), std::stoi(col.at(6)));
 
 	std::cout << "Move name: " << mv->getName() << std::endl;

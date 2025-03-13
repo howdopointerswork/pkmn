@@ -13,7 +13,7 @@ public:
 	scene();
 
 	map* getGrid();
-
+		
 	trainer* getPlayer();
 
 	npc* getNPC(int i); //get by index
@@ -50,6 +50,13 @@ public:
 
 	std::vector<std::array<int, 2>> getVec();
 
+	pkmn* getUsr();
+
+	void setUsr(pkmn* p);
+	
+	pkmn* getTgt();
+
+	void setTgt(pkmn* p);
 
 //88, 136, 160
 //22, 34, 40
@@ -66,6 +73,10 @@ private:
 	std::vector<std::array<int, 2>> vec;
 
 	trainer* player;
+
+	pkmn* usr;
+
+	pkmn* tgt;
 
 	std::vector<npc*> npcs;
 

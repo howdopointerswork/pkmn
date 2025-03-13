@@ -6,6 +6,7 @@
 #include "../src/dbManager.cpp"
 #include <chrono>
 #include <unistd.h>
+#include <queue>
 
 
 #pragma once
@@ -55,13 +56,10 @@ public:
 
 	dbManager* getDB();
 
-
-
-
-
+	bool compSpd(int s1, int s2);
 	//resolve type here
 
-
+	//resolve items here
 
 	//swap scene
 
@@ -74,6 +72,8 @@ private:
 	int choice;
 
 	bool encounter;
+
+	std::queue<object*> event;
 
 
 };

@@ -38,7 +38,13 @@ class pkmn{
 
 		bool insertMove(move* mv);
 
+		int movesetSize();
+
 		void printMoveset();
+
+		int getHealth();
+
+		void setHealth(int h);
 
 
 		type* type1; //public for now
@@ -82,5 +88,6 @@ class pkmn{
 
 		std::vector<move> moveset;
 
+		int health;
 
 };

@@ -91,12 +91,16 @@ int pkmn::getDexNo(){
 
 bool pkmn::insertMove(move* mv){
 
+	unsigned int pre = this->moveset.size()+1;
 
-	this->moveset.push_back(*mv);
-	
+	if(this->moveset.size() < 4){
+		this->moveset.push_back(*mv);
+	}
 
-	return true;
+	return (pre == this->moveset.size() ? true : false);
 }
+
+
 
 
 void pkmn::printMoveset(){
@@ -106,4 +110,19 @@ void pkmn::printMoveset(){
 		std::cout << this->moveset.at(i).getName() << std::endl;
 	}
 
+}
+
+int pkmn::movesetSize(){
+
+	return this->moveset.size();
+}
+
+int getHealth(){
+
+	return this->health;
+}
+
+void setHealth(int h){
+
+	this->health = h;
 }
